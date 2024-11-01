@@ -1,0 +1,6 @@
+@LearnBack_HostAddress = http://localhost:5110
+
+GET {{LearnBack_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

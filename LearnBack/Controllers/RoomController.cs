@@ -1,66 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using LearnBack.Component;
+using HotelManager.Domain.Services.Room;
+using HotelManager.Data.Component;
 namespace LearnBack.Controllers
 {
     public class RoomController : Controller
     {
-        private List<RoomDto> roomDtos = new List<RoomDto>
-            {
-                new RoomDto { Id = 0, Number = 0 },
-                new RoomDto { Id = 1, Number = 1 },
-                new RoomDto { Id = 2, Number = 2 },
-                new RoomDto { Id = 3, Number = 3 },
-                new RoomDto { Id = 4, Number = 4 }
-            };
-
+        private readonly IRoomService _service;
+        public RoomController(IRoomService service)
+        {
+            _service = service;
+        }
         public RoomDto GetById(int id)
         {
-            if (roomDtos != null)
-            {
-                foreach (RoomDto roomDto in roomDtos)
-                {
-                    if (roomDto.Id == id)
-                    {
-                        return roomDto;
-                    }
-                }
-                throw new Exception($"Элемент с id:{id} не найден");
-            }
-            else
-            {
-                throw new Exception("Список пуст");
-            }
+            return _service.GetById(id);
         }
         public List<RoomDto> Get()
         {
-            return roomDtos;
+            return _service.Get();
         }
         public void Update(RoomDto roomDto)
         {
-            roomDtos.Add(roomDto);
+            _service.Update(roomDto);
         }
         public void Delete(int id)
         {
-            int n = roomDtos.Count;
-            if (roomDtos != null)
-            {
-                foreach (RoomDto roomDto in roomDtos)
-                {
-                    if (roomDto.Id == id)
-                    {
-                        roomDtos.Remove(roomDto);
-                        break;
-                    }
-                }
-                if (n == roomDtos.Count)
-                {
-                    throw new Exception($"Элемент с id:{id} не найден");
-                }
-            }
-            else
-            {
-                throw new Exception("Список пуст");
-            }
+            _service.Delete(id);
+        }
+        public void Create(RoomDto roomDto)
+        {  
+            _service.Create(roomDto);
         }
     }
 }

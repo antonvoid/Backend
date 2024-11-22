@@ -1,0 +1,15 @@
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\bin\Debug\net8.0\HotelManager.Data.exe
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\bin\Debug\net8.0\HotelManager.Data.deps.json
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\bin\Debug\net8.0\HotelManager.Data.runtimeconfig.json
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\bin\Debug\net8.0\HotelManager.Data.dll
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\bin\Debug\net8.0\HotelManager.Data.pdb
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\HotelManager.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\HotelManager.Data.AssemblyInfoInputs.cache
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\HotelManager.Data.AssemblyInfo.cs
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\HotelManager.Data.csproj.CoreCompileInputs.cache
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\HotelManager.Data.sourcelink.json
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\HotelManager.Data.dll
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\refint\HotelManager.Data.dll
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\HotelManager.Data.pdb
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\HotelManager.Data.genruntimeconfig.cache
+C:\Users\anton\Source\Repos\Backend\HotelManager.Data\obj\Debug\net8.0\ref\HotelManager.Data.dll

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HotelManager.Data.Component;
+using HotelManager.Data.Entities;
 using HotelManager.Data.Repositories.Room;
 
 namespace HotelManager.Domain.Services.Room
@@ -15,25 +16,36 @@ namespace HotelManager.Domain.Services.Room
         {
             _repository = repository;
         }
-        public RoomDto GetById(int id)
+        public async Task<RoomDto> GetById(int id)
         {
-            return _repository.GetById(id);
+            RoomEntity roomEntity = await _repository.GetById(id);
+            RoomDto roomDto = new RoomDto(roomEntity.Id, roomEntity.Number, (HotelManager.Data.Component.Type)roomEntity.Type, roomEntity.Price);
+            return roomDto;
         }
-        public List<RoomDto> Get()
+        public async Task<List<RoomDto>> Get()
         {
-            return _repository.Get();
+            List<RoomEntity> roomEntites = await _repository.Get();
+            List<RoomDto> roomDtos = new List<RoomDto>();
+            foreach (RoomEntity roomEntity in roomEntites)
+            {
+                RoomDto roomDto = new RoomDto(roomEntity.Id, roomEntity.Number, (HotelManager.Data.Component.Type)roomEntity.Type, roomEntity.Price);
+                roomDtos.Add(roomDto);
+            }
+            return roomDtos;
         }
-        public void Update(RoomDto roomDto)
+        public async Task Update(RoomDto roomDto)
         {
-            _repository.Update(roomDto);
+            RoomEntity roomEntity = new RoomEntity(roomDto.Id, roomDto.Number, (HotelManager.Data.Entities.Type)roomDto.Type, roomDto.Price);
+            await _repository.Update(roomEntity);
         }
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _repository.Delete(id);
+            await _repository.Delete(id);
         }
-        public void Create(RoomDto roomDto)
+        public async Task Create(RoomDto roomDto)
         {
-            _repository.Create(roomDto);
+            RoomEntity roomEntity = new RoomEntity(roomDto.Id, roomDto.Number, (HotelManager.Data.Entities.Type)roomDto.Type, roomDto.Price);
+            await _repository.Create(roomEntity);
         }
     }
 }

@@ -4,46 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HotelManager.Data.Component;
+using HotelManager.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManager.Data.Repositories.Room
 {
     public class RoomRepository : IRoomRepository
     {
-        private List<RoomDto> roomDtos = new List<RoomDto>
-        {
-                new RoomDto { Id = 0, Number = 0 },
-                new RoomDto { Id = 1, Number = 1 },
-                new RoomDto { Id = 2, Number = 2 },
-                new RoomDto { Id = 3, Number = 3 },
-                new RoomDto { Id = 4, Number = 4 }
-        };
+        private HotelManagerDbContext dbContext = new HotelManagerDbContext();
 
-        public RoomDto GetById(int id)
+        public async Task<RoomEntity> GetById(int id)
         {
-            return roomDtos.FirstOrDefault(r => r.Id == id);
+            return await dbContext.Rooms.FirstOrDefaultAsync(r => r.Id == id);
         }
-        public List<RoomDto> Get()
+        public async Task<List<RoomEntity>> Get()
         {
-            return roomDtos;
+            return await dbContext.Rooms.ToListAsync();
         }
-        public void Update(RoomDto roomDto)
+        public async Task Update(RoomEntity roomEntity)
         {
-            for (int i = 0; i < roomDtos.Count; i++)
-            {
-                if (roomDto.Id == roomDtos[i].Id)
-                {
-                    roomDtos[i] = roomDto;
-                    break;
-                }               
-            }
+            await dbContext.Rooms.
+                Where(r => r.Id == roomEntity.Id)
+                .ExecuteUpdateAsync(r => r.SetProperty(r => r.Number, roomEntity.Number)
+                .SetProperty(r => r.Type, roomEntity.Type)
+                .SetProperty(r => r.Price, roomEntity.Price));
         }
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            roomDtos.RemoveAll(r => r.Id == id);
+
+            await dbContext.Rooms.Where(r => r.Id == id).ExecuteDeleteAsync();
         }
-        public void Create(RoomDto roomDto)
+        public async Task Create(RoomEntity roomEntity)
         {
-            roomDtos.Add(roomDto);
+            await dbContext.Rooms.AddAsync(roomEntity);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

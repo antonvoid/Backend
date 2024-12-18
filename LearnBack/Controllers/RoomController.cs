@@ -12,29 +12,29 @@ namespace LearnBack.Controllers
             _service = service;
         }
         [HttpGet("GetById")]
-        public RoomDto GetById(int id)
+        public async Task<RoomDto> GetById(int id)
         {
-            return _service.GetById(id);
+            return await _service.GetById(id);
         }
         [HttpGet("Get")]
-        public List<RoomDto> Get()
+        public async Task<List<RoomDto>> Get()
         {
-            return _service.Get();
+            return await _service.Get();
         }
         [HttpPatch("Update")]
-        public void Update(RoomDto roomDto)
+        public async Task Update(RoomDto roomDto)
         {
-            _service.Update(roomDto);
+            await _service.Update(roomDto);
         }
         [HttpDelete("Delete")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _service.Delete(id);
+            await _service.Delete(id);
         }
         [HttpPost("Create")]
-        public void Create(RoomDto roomDto)
+        public async Task Create(RoomDto roomDto)
         {
-            _service.Create(roomDto);
+            await _service.Create(roomDto);
         }
     }
 }

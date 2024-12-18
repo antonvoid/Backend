@@ -9,10 +9,10 @@ namespace HotelManager.Domain.Services.Room
 {
     public interface IRoomService
     {
-        RoomDto GetById(int id);
-        List<RoomDto> Get();
-        void Update(RoomDto roomDto);
-        void Delete(int id);
-        void Create(RoomDto roomDto);
+        Task<RoomDto> GetById(int id);
+        Task<List<RoomDto>> Get();
+        Task Update(RoomDto roomDto);
+        Task Delete(int id);
+        Task Create(RoomDto roomDto);
     }
 }

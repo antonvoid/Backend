@@ -1,4 +1,5 @@
 ﻿using HotelManager.Data.Component;
+using HotelManager.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace HotelManager.Data.Repositories.Room
 {
     public interface IRoomRepository
     {
-        RoomDto GetById(int id);
-        List<RoomDto> Get();
-        void Update(RoomDto roomDto);
-        void Delete(int id);
-        void Create(RoomDto roomDto);
+        Task<RoomEntity> GetById(int id);
+        Task<List<RoomEntity>> Get();
+        Task Update(RoomEntity roomEntity);
+        Task Delete(int id);
+        Task Create(RoomEntity roomEntity);
     }
 }

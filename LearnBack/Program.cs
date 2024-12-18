@@ -1,7 +1,13 @@
+using HotelManager.Data.Component;
+using HotelManager.Data.Repositories.Room;
+using HotelManager.Domain.Services.Room;
+using LearnBack.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddSingleton<IRoomRepository, RoomRepository>();
+builder.Services.AddSingleton<IRoomService, RoomService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -1,66 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using LearnBack.Component;
+using HotelManager.Domain.Services.Room;
+using HotelManager.Data.Component;
 namespace LearnBack.Controllers
 {
-    public class RoomController : Controller
+    [ApiController]
+    public class RoomController : ControllerBase
     {
-        private List<RoomDto> roomDtos = new List<RoomDto>
-            {
-                new RoomDto { Id = 0, Number = 0 },
-                new RoomDto { Id = 1, Number = 1 },
-                new RoomDto { Id = 2, Number = 2 },
-                new RoomDto { Id = 3, Number = 3 },
-                new RoomDto { Id = 4, Number = 4 }
-            };
-
-        public RoomDto GetById(int id)
+        private readonly IRoomService _service;
+        public RoomController(IRoomService service)
         {
-            if (roomDtos != null)
-            {
-                foreach (RoomDto roomDto in roomDtos)
-                {
-                    if (roomDto.Id == id)
-                    {
-                        return roomDto;
-                    }
-                }
-                throw new Exception($"Элемент с id:{id} не найден");
-            }
-            else
-            {
-                throw new Exception("Список пуст");
-            }
+            _service = service;
         }
-        public List<RoomDto> Get()
+        [HttpGet("GetById")]
+        public async Task<RoomDto> GetById(int id)
         {
-            return roomDtos;
+            return await _service.GetById(id);
         }
-        public void Update(RoomDto roomDto)
+        [HttpGet("Get")]
+        public async Task<List<RoomDto>> Get()
         {
-            roomDtos.Add(roomDto);
+            return await _service.Get();
         }
-        public void Delete(int id)
+        [HttpPatch("Update")]
+        public async Task Update(RoomDto roomDto)
         {
-            int n = roomDtos.Count;
-            if (roomDtos != null)
-            {
-                foreach (RoomDto roomDto in roomDtos)
-                {
-                    if (roomDto.Id == id)
-                    {
-                        roomDtos.Remove(roomDto);
-                        break;
-                    }
-                }
-                if (n == roomDtos.Count)
-                {
-                    throw new Exception($"Элемент с id:{id} не найден");
-                }
-            }
-            else
-            {
-                throw new Exception("Список пуст");
-            }
+            await _service.Update(roomDto);
+        }
+        [HttpDelete("Delete")]
+        public async Task Delete(int id)
+        {
+            await _service.Delete(id);
+        }
+        [HttpPost("Create")]
+        public async Task Create(RoomDto roomDto)
+        {
+            await _service.Create(roomDto);
         }
     }
 }
